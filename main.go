@@ -1,16 +1,15 @@
-package day2
+package main
 
 import (
-	"errors"
 	"fmt"
-	"os"
-	"strconv"
+
+	"trainig/fileops"
 )
 
 const accountBalanceFileName = "balance.txt"
 
 func main() {
-	accountBalance, err := getBalanceFromFile()
+	accountBalance, err := fileops.GetBalanceFromFile(accountBalanceFileName)
 	if err != nil {
 		fmt.Println("ERROR")
 		fmt.Println(err)
@@ -20,13 +19,7 @@ func main() {
 	var choise int
 	fmt.Println("Welcome to Go Bank!")
 	for {
-
-		fmt.Println("what do you want to do?")
-		fmt.Println("1. Check balance")
-		fmt.Println("2. Deposit money")
-		fmt.Println("3. Witdraw money")
-		fmt.Println("4. Exit")
-
+		presentOptions()
 		fmt.Print("Your choice: ")
 		fmt.Scan(&choise)
 
@@ -44,7 +37,7 @@ func main() {
 			}
 			accountBalance += depositAmount
 			fmt.Println("Your balance is: ", accountBalance)
-			writeBalanceToFile(accountBalance)
+			fileops.WriteBalanceToFile(accountBalance, accountBalanceFileName)
 		}
 
 		if choise == 3 {
@@ -61,7 +54,7 @@ func main() {
 			} else {
 				accountBalance -= withdrawAmount
 				fmt.Println("Your balance is: ", accountBalance)
-				writeBalanceToFile(accountBalance)
+				fileops.WriteBalanceToFile(accountBalance, accountBalanceFileName)
 			}
 		}
 
@@ -74,23 +67,4 @@ func main() {
 		}
 	}
 	fmt.Println("Thanks for using Go Bank!")
-}
-
-func writeBalanceToFile(balance float64) {
-	balanceText := fmt.Sprint(balance)
-	os.WriteFile(accountBalanceFileName, []byte(balanceText), 0644)
-}
-
-func getBalanceFromFile() (float64, error) {
-	data, err := os.ReadFile(accountBalanceFileName)
-	if err != nil {
-		return 1000, errors.New("Failed to find balance file.")
-	}
-	balanceText := string(data)
-	balance, err := strconv.ParseFloat(balanceText, 64)
-
-	if err != nil {
-		return 1000, errors.New("Failed to parse stored balance value.")
-	}
-	return balance, nil
 }

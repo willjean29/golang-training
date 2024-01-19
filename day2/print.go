@@ -1,8 +1,8 @@
-package main
+package day2
 
 import "fmt"
 
-func main() {
+func calculator() {
 	var name, lastName string = "Jean", "Osco"
 	edad := 27
 	// output text with formatting

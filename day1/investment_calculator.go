@@ -1,11 +1,11 @@
-package main
+package day
 
 import (
 	"fmt"
 	"math"
 )
 
-func main() {
+func investment() {
 	const inflationRate float64 = 2.5
 	// one form of declaration variable
 	var investmentAmount, years float64
@@ -24,8 +24,8 @@ func main() {
 	fmt.Print("Years: ")
 	fmt.Scan(&years)
 
-	futureValue := investmentAmount * math.Pow((1+ expectedReturnRate/100),years)
-	futureRealValue := futureValue / math.Pow((1+ inflationRate/100),years)
+	futureValue := investmentAmount * math.Pow((1+expectedReturnRate/100), years)
+	futureRealValue := futureValue / math.Pow((1+inflationRate/100), years)
 
 	fmt.Println(futureValue)
 	fmt.Println(futureRealValue)
