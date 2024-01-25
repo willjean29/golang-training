@@ -2,7 +2,7 @@ package main
 
 import "fmt"
 
-func main() {
+func mains() {
 	prices := []float64{10.99, 9.99}
 	prices[1] = 11.99
 	// dispatch erro
