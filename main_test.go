@@ -1,12 +1,15 @@
 package main
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
 
 func TestSum(t *testing.T) {
 	result := sum(1, 2)
-	if result != 3 {
-		t.Errorf("sum was incorrect, got: %v want: %v ", result, 3)
-	}
+	expected := 3
+	assert.Equal(t, expected, result)
 }
 
 func TestSumStr(t *testing.T) {
@@ -26,9 +29,7 @@ func TestSumStr(t *testing.T) {
 		t.Run(test.Name, func(t *testing.T) {
 			t.Parallel()
 			result := sumStr(test.A, test.B)
-			if result != test.Expected {
-				t.Errorf("sumStr was incorrect, got: %v want: %v ", result, test.Expected)
-			}
+			assert.Equal(t, test.Expected, result)
 		})
 	}
 }
