@@ -33,3 +33,17 @@ func TestSumStr(t *testing.T) {
 		})
 	}
 }
+
+func TestSquare_Area(t *testing.T) {
+	s := Square{length: 3}
+	result := s.Area()
+	expected := 9
+	assert.Equal(t, expected, result)
+}
+
+func TestSquare_Perimeter(t *testing.T) {
+	s := Square{length: 3}
+	result := s.Perimeter()
+	expected := 12
+	assert.Equal(t, expected, result)
+}

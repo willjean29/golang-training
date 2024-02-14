@@ -26,3 +26,15 @@ func sumStr(a, b string) int {
 	}
 	return c + d
 }
+
+type Square struct {
+	length int
+}
+
+func (s *Square) Area() int {
+	return s.length * s.length
+}
+
+func (s *Square) Perimeter() int {
+	return 4 * s.length
+}
